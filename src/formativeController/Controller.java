@@ -1,3 +1,5 @@
+package formativeController;
+
 import formativeView.Frame;
 import formativeModel.Winner;
 
@@ -6,6 +8,7 @@ public class Controller {
  private Winner calc;
  private int stuff1;
  private int stuff2;
+ private boolean whose;
 	 public Controller()
 	 {
 		 baseFrame = new Frame(this);
@@ -25,16 +28,17 @@ public class Controller {
 			// calc.playerTwoValue(stuff2);
 		 }
 	 
-	public void playerOneValues(int p1value, int p2value) {
+	public void playerOneValues(int p1value, int p2value, boolean who) {
 		
 		  stuff1 = p1value;
 			 stuff2 = p2value;
+			 whose = who;
 			 playersValue();
 			 // return stuff1;
 	}
 	public void playersValue()
 	 {
-		 calc.playerOneValue(stuff1, stuff2);	
+		 calc.playerOneValue(stuff1, stuff2, whose);	
 		 
 		 }
 

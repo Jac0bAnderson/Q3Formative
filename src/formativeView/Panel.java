@@ -35,7 +35,7 @@ private int player1loss;
 private int player2Win;
 private int player2Loss;
 private JLabel lastWin;
-private boolean isbot;
+private boolean whoPlays;
 
 public Panel(Controller baseController)
 {
@@ -58,6 +58,7 @@ whosPlaying = new JCheckBox("Player vs Player?");
 
 
 whosPlaying.setSelected(true);
+whoPlays = true;
 player1Win = 0;
 player1loss = 0;
 player2Win = 0;
@@ -69,7 +70,7 @@ twoScore = new JLabel(+player2Win+ "/"+ player2Loss);
 
 quitButton = new JButton("Exit");
 lastWin = new JLabel("Rock Paper Scissors");
-isbot = false;
+
 
 
 
@@ -131,7 +132,7 @@ private void setupListeners()
 	{
 		public void actionPerformed(ActionEvent clickEvent)
 		{
-			
+			playing();
 			player1Value();
 		//	player2Value();
 			//pc.compPlayer();
@@ -153,6 +154,7 @@ public int player1Value()
 {
 	String p1Value = playerOneInput.getText();
 	int p1value = 0;
+	
 	
 	if(p1Value.equalsIgnoreCase("a"))
 	{
@@ -192,7 +194,7 @@ public int player1Value()
 		p2value = 1;
 	}
 	
-	baseController.playerOneValues(p1value, p2value);
+	baseController.playerOneValues(p1value, p2value, whoPlays);
 	return p1value;
 }
 
@@ -204,8 +206,15 @@ if(win == 300){
 	lastWin.setText("Tie");
 }
 else if(win == 200){
+	if(! whoPlays)
+	{
+		System.out.println("Computer wins");
+		lastWin.setText("The Computer Wins");
+	}
+	else{
 	System.out.println("player2 wins");
 	lastWin.setText("Player Two Wins");
+	}
 	player1loss = 1+ player1loss;
 	player2Win = 1+ player2Win;
 	oneScore.setText(+player1Win+  "/" + player1loss);
@@ -226,7 +235,12 @@ else
 
 
 }
-
-
+private void playing()
+{
+	if(! whosPlaying.isSelected())
+	{
+		whoPlays = false;
+	}
 }
 
+}

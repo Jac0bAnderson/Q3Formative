@@ -50,9 +50,11 @@ playerOneLabel = new JLabel("Player one");
 
 playerTwoLabel = new JLabel("Player two");
 controls = new JLabel("Rock: P1-A  p2-J Paper: P1-S or P2-K Scissors: P1-D or P2-L");
+baseLayout.putConstraint(SpringLayout.WEST, controls, 33, SpringLayout.WEST, this);
 
 submit = new JButton("submit");
 whosPlaying = new JCheckBox("Player vs Player?");
+
 
 whosPlaying.setSelected(true);
 player1Win = 0;
@@ -66,8 +68,8 @@ twoScore = new JLabel(+player2Win+ "/"+ player2Loss);
 
 quitButton = new JButton("Exit");
 lastWin = new JLabel("Rock Paper Scissors");
-baseLayout.putConstraint(SpringLayout.NORTH, lastWin, 0, SpringLayout.NORTH, twoScore);
-baseLayout.putConstraint(SpringLayout.WEST, lastWin, 70, SpringLayout.EAST, oneScore);
+
+
 
 
 
@@ -97,23 +99,23 @@ private void setupPanel()
 }
 private void setupLayout()
 {
+	baseLayout.putConstraint(SpringLayout.SOUTH, whosPlaying, -59, SpringLayout.NORTH, controls);
+	baseLayout.putConstraint(SpringLayout.SOUTH, controls, -41, SpringLayout.NORTH, lastWin);
+	baseLayout.putConstraint(SpringLayout.NORTH, lastWin, 0, SpringLayout.NORTH, twoScore);
+	baseLayout.putConstraint(SpringLayout.WEST, lastWin, 70, SpringLayout.EAST, oneScore);
 	baseLayout.putConstraint(SpringLayout.NORTH, quitButton, 10, SpringLayout.NORTH, this);
 	baseLayout.putConstraint(SpringLayout.EAST, quitButton, 0, SpringLayout.EAST, this);
 	baseLayout.putConstraint(SpringLayout.NORTH, oneScore, 0, SpringLayout.NORTH, twoScore);
 	baseLayout.putConstraint(SpringLayout.SOUTH, twoScore, -6, SpringLayout.NORTH, playerTwoLabel);
 	baseLayout.putConstraint(SpringLayout.EAST, twoScore, -68, SpringLayout.EAST, this);
 	baseLayout.putConstraint(SpringLayout.WEST, oneScore, 61, SpringLayout.WEST, this);
-	baseLayout.putConstraint(SpringLayout.SOUTH, whosPlaying, -56, SpringLayout.NORTH, controls);
 	baseLayout.putConstraint(SpringLayout.EAST, whosPlaying, 0, SpringLayout.EAST, playerOneInput);
 	baseLayout.putConstraint(SpringLayout.NORTH, submit, 1, SpringLayout.NORTH, playerTwoInput);
 	baseLayout.putConstraint(SpringLayout.WEST, submit, 30, SpringLayout.EAST, playerOneInput);
-	baseLayout.putConstraint(SpringLayout.SOUTH, controls, -66, SpringLayout.NORTH, playerTwoLabel);
-	baseLayout.putConstraint(SpringLayout.EAST, controls, -94, SpringLayout.EAST, this);
 	baseLayout.putConstraint(SpringLayout.WEST, playerOneLabel, 44, SpringLayout.WEST, this);
 	baseLayout.putConstraint(SpringLayout.NORTH, playerOneLabel, 0, SpringLayout.NORTH, playerTwoLabel);
 	baseLayout.putConstraint(SpringLayout.SOUTH, playerTwoLabel, -6, SpringLayout.NORTH, playerTwoInput);
 	baseLayout.putConstraint(SpringLayout.EAST, playerTwoLabel, -46, SpringLayout.EAST, this);
-
 	baseLayout.putConstraint(SpringLayout.WEST, playerOneInput, 10, SpringLayout.WEST, this);
 	baseLayout.putConstraint(SpringLayout.NORTH, playerOneInput, 0, SpringLayout.NORTH, playerTwoInput);
 	baseLayout.putConstraint(SpringLayout.SOUTH, playerTwoInput, -22, SpringLayout.SOUTH, this);
@@ -194,11 +196,26 @@ public int player2Value()
 
 public void winLoss(int winner) 
 {
-if(winner == 100)
+if(winner == 300)
 {
-	
+	lastWin.setText("Tie");
 }
-	
+else if(winner == 200)
+{
+	lastWin.setText("Player Two Wins");
+	player1loss = 1+ player1loss;
+	player2Win = 1+ player2Win;
+	oneScore.setText(+player1Win+  "/" + player1loss);
+	twoScore.setText(+player2Win+  "/" + player2Loss);
+}
+else if(winner == 100)
+{
+	lastWin.setText("Player One Wins");
+	player1Win = 1+ player1Win;
+	player2Loss = 1+ player2Loss;
+	oneScore.setText(+player1Win+  "/" + player1loss);
+	twoScore.setText(+player2Win+  "/" + player2Loss);
+}
 }
 
 

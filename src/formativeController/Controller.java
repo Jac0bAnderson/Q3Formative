@@ -10,6 +10,7 @@ public class Controller {
 	 public Controller()
 	 {
 		 baseFrame = new Frame(this);
+		 calc = new Winner();
 	 }
 	 
 	 public void start()
@@ -18,11 +19,13 @@ public class Controller {
 	 }
 	 public void playerOneValues(int valOne)
 	 {
-		calc.playerOneValue(valOne);
+		 int stuff1 = valOne;
+		calc.playerOneValue(stuff1);
 		
 	 }
 	 public void playerTwoValues(int valTwo)
 	 {
-		 calc.playerTwoValue(valTwo);
+		 int stuff2= valTwo;
+		 calc.playerTwoValue(stuff2);
 	 }
 }

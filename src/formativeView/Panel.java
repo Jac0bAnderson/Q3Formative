@@ -28,6 +28,13 @@ private JButton submit;
 private JLabel compScore;
 private JLabel controls;
 private JCheckBox whosPlaying;
+private JButton quitButton;
+
+private int player1Win;
+private int player1loss;
+private int player2Win;
+private int player2Loss;
+private JLabel lastWin;
 
 public Panel(Controller baseController)
 {
@@ -42,15 +49,27 @@ playerTwoInput.setForeground(Color.WHITE);
 playerOneLabel = new JLabel("Player one");
 
 playerTwoLabel = new JLabel("Player two");
-controls = new JLabel("Rock: A or J Paper: S or K Scissors: D or L");
+controls = new JLabel("Rock: P1-A  p2-J Paper: P1-S or P2-K Scissors: P1-D or P2-L");
 
 submit = new JButton("submit");
 whosPlaying = new JCheckBox("Player vs Player?");
-baseLayout.putConstraint(SpringLayout.SOUTH, whosPlaying, -56, SpringLayout.NORTH, controls);
-baseLayout.putConstraint(SpringLayout.EAST, whosPlaying, 0, SpringLayout.EAST, playerOneInput);
+
 whosPlaying.setSelected(true);
-oneScore = new JLabel("0/0");
-twoScore = new JLabel("0/0");
+player1Win = 0;
+player1loss = 0;
+player2Win = 0;
+player2Loss = 0;
+
+oneScore = new JLabel(+player1Win+  "/" + player1loss);
+
+twoScore = new JLabel(+player2Win+ "/"+ player2Loss);
+
+quitButton = new JButton("Exit");
+lastWin = new JLabel("Rock Paper Scissors");
+baseLayout.putConstraint(SpringLayout.NORTH, lastWin, 0, SpringLayout.NORTH, twoScore);
+baseLayout.putConstraint(SpringLayout.WEST, lastWin, 70, SpringLayout.EAST, oneScore);
+
+
 
 
 
@@ -62,6 +81,8 @@ setupListeners();
 
 private void setupPanel()
 {
+	this.add(lastWin);
+	this.add(quitButton);
 	this.add(twoScore);
 	this.add(oneScore);
 	this.add(whosPlaying);
@@ -76,6 +97,14 @@ private void setupPanel()
 }
 private void setupLayout()
 {
+	baseLayout.putConstraint(SpringLayout.NORTH, quitButton, 10, SpringLayout.NORTH, this);
+	baseLayout.putConstraint(SpringLayout.EAST, quitButton, 0, SpringLayout.EAST, this);
+	baseLayout.putConstraint(SpringLayout.NORTH, oneScore, 0, SpringLayout.NORTH, twoScore);
+	baseLayout.putConstraint(SpringLayout.SOUTH, twoScore, -6, SpringLayout.NORTH, playerTwoLabel);
+	baseLayout.putConstraint(SpringLayout.EAST, twoScore, -68, SpringLayout.EAST, this);
+	baseLayout.putConstraint(SpringLayout.WEST, oneScore, 61, SpringLayout.WEST, this);
+	baseLayout.putConstraint(SpringLayout.SOUTH, whosPlaying, -56, SpringLayout.NORTH, controls);
+	baseLayout.putConstraint(SpringLayout.EAST, whosPlaying, 0, SpringLayout.EAST, playerOneInput);
 	baseLayout.putConstraint(SpringLayout.NORTH, submit, 1, SpringLayout.NORTH, playerTwoInput);
 	baseLayout.putConstraint(SpringLayout.WEST, submit, 30, SpringLayout.EAST, playerOneInput);
 	baseLayout.putConstraint(SpringLayout.SOUTH, controls, -66, SpringLayout.NORTH, playerTwoLabel);
@@ -102,6 +131,14 @@ private void setupListeners()
 			//pc.compPlayer();
 			
 			
+		}
+	
+	});
+	quitButton.addActionListener(new ActionListener()
+	{
+		public void actionPerformed(ActionEvent clickEvent)
+		{
+			System.exit(0);
 		}
 	
 	});
@@ -153,6 +190,15 @@ public int player2Value()
 	}
 	baseController.playerTwoValues(p2value);
 	return p2value;
+}
+
+public void winLoss(int winner) 
+{
+if(winner == 100)
+{
+	
+}
+	
 }
 
 

@@ -1,9 +1,11 @@
 package formativeModel;
 
+import formativeView.Panel;
 public class Winner 
 {
 	private int playerOne;
 	private int playerTwo;
+	private Panel panel;
 public int playerOneValue(int valueOne)
 {
 	playerOne = valueOne;
@@ -71,7 +73,7 @@ public int whoWon()
 		winner = 300;
 	}
 	
-	
+	panel.winLoss(winner);
 		return winner;
 }
 

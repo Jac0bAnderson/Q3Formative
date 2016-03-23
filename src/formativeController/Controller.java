@@ -6,7 +6,8 @@ import formativeModel.Winner;
 public class Controller {
  private Frame baseFrame;
  private Winner calc;
-	 
+ private int stuff1;
+ private int stuff2;
 	 public Controller()
 	 {
 		 baseFrame = new Frame(this);
@@ -17,15 +18,26 @@ public class Controller {
 	 {
 		 
 	 }
-	 public void playerOneValues(int valOne)
-	 {
-		 int stuff1 = valOne;
-		calc.playerOneValue(stuff1);
-		
-	 }
 	 public void playerTwoValues(int valTwo)
 	 {
-		 int stuff2= valTwo;
-		 calc.playerTwoValue(stuff2);
-	 }
+		 // stuff2= valTwo;
+		//  System.out.println("playervalue:"+stuff2);
+		//  return stuff2;
+		
+			// calc.playerTwoValue(stuff2);
+		 }
+	 
+	public void playerOneValues(int p1value, int p2value) {
+		
+		  stuff1 = p1value;
+			 stuff2 = p2value;
+			 playersValue();
+			 // return stuff1;
+	}
+	public void playersValue()
+	 {
+		 calc.playerOneValue(stuff1, stuff2);	
+		 
+		 }
+
 }

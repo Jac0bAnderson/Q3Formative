@@ -6,16 +6,23 @@ public class Winner
 	private int playerOne;
 	private int playerTwo;
 	private Panel panel;
-public int playerOneValue(int valueOne)
+	public Winner()
+	{
+		panel = new Panel(null);
+	}
+public void playerOneValue(int valueOne, int valueTwo )
 {
 	playerOne = valueOne;
-	return playerOne;
-}
-public int playerTwoValue(int valueTwo)
-{
 	playerTwo = valueTwo;
-	return playerTwo;
+	System.out.println("player values: "+ playerOne + " and " + playerTwo);
+	whoWon();
+	//return playerOne;
 }
+//public int playerTwoValue(int valueTwo)
+//{
+	//playerTwo = valueTwo;
+	//return playerTwo;
+//}
 
 public int compPlayer() 
 {
@@ -25,7 +32,7 @@ return pcValue;
 }
 public int whoWon()
 {
-	
+	System.out.println("WHOOOWON?");
 	int winner = 0;
 	if(playerOne == 1 && playerTwo == 1)
 	{
@@ -72,7 +79,7 @@ public int whoWon()
 	{
 		winner = 300;
 	}
-	
+	System.out.println(winner);
 	panel.winLoss(winner);
 		return winner;
 }

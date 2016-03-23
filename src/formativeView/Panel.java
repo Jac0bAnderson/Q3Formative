@@ -35,6 +35,7 @@ private int player1loss;
 private int player2Win;
 private int player2Loss;
 private JLabel lastWin;
+private boolean isbot;
 
 public Panel(Controller baseController)
 {
@@ -50,7 +51,7 @@ playerOneLabel = new JLabel("Player one");
 
 playerTwoLabel = new JLabel("Player two");
 controls = new JLabel("Rock: P1-A  p2-J Paper: P1-S or P2-K Scissors: P1-D or P2-L");
-baseLayout.putConstraint(SpringLayout.WEST, controls, 33, SpringLayout.WEST, this);
+
 
 submit = new JButton("submit");
 whosPlaying = new JCheckBox("Player vs Player?");
@@ -68,6 +69,7 @@ twoScore = new JLabel(+player2Win+ "/"+ player2Loss);
 
 quitButton = new JButton("Exit");
 lastWin = new JLabel("Rock Paper Scissors");
+isbot = false;
 
 
 
@@ -99,6 +101,7 @@ private void setupPanel()
 }
 private void setupLayout()
 {
+	baseLayout.putConstraint(SpringLayout.WEST, controls, 33, SpringLayout.WEST, this);
 	baseLayout.putConstraint(SpringLayout.SOUTH, whosPlaying, -59, SpringLayout.NORTH, controls);
 	baseLayout.putConstraint(SpringLayout.SOUTH, controls, -41, SpringLayout.NORTH, lastWin);
 	baseLayout.putConstraint(SpringLayout.NORTH, lastWin, 0, SpringLayout.NORTH, twoScore);
@@ -128,8 +131,9 @@ private void setupListeners()
 	{
 		public void actionPerformed(ActionEvent clickEvent)
 		{
+			
 			player1Value();
-			player2Value();
+		//	player2Value();
 			//pc.compPlayer();
 			
 			
@@ -166,56 +170,61 @@ public int player1Value()
 	{
 		p1value = 1;
 	}
-	baseController.playerOneValues(p1value);
-	return p1value;
-}
-public int player2Value()
-{
+	///
+	
 	String p2Value = playerTwoInput.getText();
 	int p2value = 0;
 	
-	if(p2Value.equalsIgnoreCase("a"))
+	if(p2Value.equalsIgnoreCase("j"))
 	{
 		p2value = 1;
 	}
-	else if(p2Value.equalsIgnoreCase("s"))
+	else if(p2Value.equalsIgnoreCase("k"))
 	{
 		p2value = 2;
 	}
-	else if (p2Value.equalsIgnoreCase("d"))
+	else if (p2Value.equalsIgnoreCase("l"))
 	{
 		p2value = 3;
 	}
-	else if(! p2Value.equalsIgnoreCase("a") && ! p2Value.equalsIgnoreCase("s") && ! p2Value.equalsIgnoreCase("d"))
+	else if(! p2Value.equalsIgnoreCase("j") && ! p2Value.equalsIgnoreCase("k") && ! p2Value.equalsIgnoreCase("l"))
 	{
 		p2value = 1;
 	}
-	baseController.playerTwoValues(p2value);
-	return p2value;
+	
+	baseController.playerOneValues(p1value, p2value);
+	return p1value;
 }
+
 
 public void winLoss(int winner) 
 {
-if(winner == 300)
-{
+	int win = winner;
+if(win == 300){
 	lastWin.setText("Tie");
 }
-else if(winner == 200)
-{
+else if(win == 200){
+	System.out.println("player2 wins");
 	lastWin.setText("Player Two Wins");
 	player1loss = 1+ player1loss;
 	player2Win = 1+ player2Win;
 	oneScore.setText(+player1Win+  "/" + player1loss);
 	twoScore.setText(+player2Win+  "/" + player2Loss);
 }
-else if(winner == 100)
-{
+else if(win == 100){
+	System.out.println("player1 wins");
 	lastWin.setText("Player One Wins");
 	player1Win = 1+ player1Win;
 	player2Loss = 1+ player2Loss;
 	oneScore.setText(+player1Win+  "/" + player1loss);
 	twoScore.setText(+player2Win+  "/" + player2Loss);
 }
+else
+{
+	System.out.println("it didnt work:(");
+}
+
+
 }
 
 

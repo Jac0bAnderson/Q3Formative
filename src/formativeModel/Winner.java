@@ -5,16 +5,22 @@ public class Winner
 {
 	private int playerOne;
 	private int playerTwo;
+	private boolean isBot;
 	private Panel panel;
 	public Winner()
 	{
 		panel = new Panel(null);
 	}
-public void playerOneValue(int valueOne, int valueTwo )
+public void playerOneValue(int valueOne, int valueTwo, boolean bot )
 {
 	playerOne = valueOne;
 	playerTwo = valueTwo;
-	System.out.println("player values: "+ playerOne + " and " + playerTwo);
+	isBot = bot;
+	System.out.println("player values: "+ playerOne + " and " + playerTwo+ "and " + bot);
+	if(! isBot)
+	{
+		compPlayer();
+	}
 	whoWon();
 	//return playerOne;
 }
@@ -27,12 +33,19 @@ public void playerOneValue(int valueOne, int valueTwo )
 public int compPlayer() 
 {
 int pcValue = (int) (Math.random()*4);	
+if(pcValue == 0 || pcValue >= 4)
+{
+	playerTwo = 1;
+}
+else {
+playerTwo = pcValue;
+}
 return pcValue;
 	
 }
 public int whoWon()
 {
-	System.out.println("WHOOOWON?");
+	System.out.println(playerOne+ "  " +playerTwo);
 	int winner = 0;
 	if(playerOne == 1 && playerTwo == 1)
 	{

@@ -1,5 +1,3 @@
-package formativeController;
-
 import formativeView.Frame;
 import formativeModel.Winner;
 
